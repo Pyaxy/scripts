@@ -14,6 +14,32 @@
 
 ## 使用
 
+### 短链接一键运行
+
+在 Alpine 服务器上，以 root 用户复制执行：
+
+```sh
+sh -c "$(curl -fsSL https://install.dry.li/snell-alpine)"
+```
+
+普通用户（已配置 sudo）使用：
+
+```sh
+sudo sh -c "$(curl -fsSL https://install.dry.li/snell-alpine)"
+```
+
+若提示 `curl: not found`，先以 root 执行：
+
+```sh
+apk add --no-cache curl ca-certificates
+```
+
+短链接返回当前已部署的脚本，运行后按菜单选择安装或管理功能。
+
+### 本地文件运行
+
+下载脚本后，也可以在脚本所在目录以 root 执行：
+
 ```sh
 chmod +x snell-alpine-lowspace.sh
 ./snell-alpine-lowspace.sh
@@ -40,7 +66,7 @@ chmod +x test-snell-binary.sh
 
 它只在临时目录工作，并使用 `127.0.0.1:39127` 做两秒真实启动测试；结束后自动停止进程并删除文件。若端口已占用，可执行 `TEST_PORT=39128 ./test-snell-binary.sh v5.0.1`。
 
-建议先下载再执行，便于审计，不建议把未知在线内容直接放进 `sh -c`。
+如需先检查脚本内容，可下载到本地，检查后按上述本地文件方式执行。
 
 ## 空间与功能边界
 
